@@ -3,7 +3,10 @@ import React from 'react';
 class Header extends React.Component{
   render(){
     return(
-      <p>Header</p>
+      <header className="top">
+        <h1>Catch of the day</h1>
+        <h3 className="tagline">Fill me in</h3>
+      </header>
     )
   }
 }
