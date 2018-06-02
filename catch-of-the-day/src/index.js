@@ -1,18 +1,8 @@
-import React from "react";
-import { render } from "react-dom";
-import {BrowserRouter, Match, Miss} from 'react-router';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-
-import './css/style.css';
-import StorePicker from './components/StorePicker'
-import App from './components/app';
-
-const Root = () =>{
-  return(
-    <BrowserRouter>
-      <Match exactly pattern="/" component={StorePicker} />
-      <Match pattern="/store/:storeId" component={App} />
-    </BrowserRouter>
-  )
-}
-render (<Root/>, document.querySelector('#main'));
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
