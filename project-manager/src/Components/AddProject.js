@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import uuid from 'uuid';
 
 class AddProject extends Component {
 
@@ -13,13 +13,26 @@ static defaultProps = {
   catagories: ['Web Design', 'Web Development', 'Mobile Development']
 }
 handleSubmit(e){
-  console.log(this.refs.title.value);
+  if(this.refs.title.value === ''){
+    alert("Title is empty");
+  }
+  else{
+    this.setState({
+      newProject: {
+        id: uuid.v4(),
+        title: this.refs.title.value,
+        catagory: this.refs.catagory.value
+      }
+    },function(){
+      this.props.AddProject(this.state.newProject);
+    })
+  }
   e.preventDefault();
 }
 
   render() {
     let catagoryOptions = this.props.catagories.map(catagory =>{
-      return <option key={catagory} value="catagory">{catagory}</option>
+      return <option key={catagory} value={catagory}>{catagory}</option>
     });
     return (
       <div>
@@ -36,7 +49,9 @@ handleSubmit(e){
             </select>
           </div>
           <div>
-          <input type="submit" value="submit" />          
+          <br/>
+          <input type="submit" value="submit" />
+          <br />           
           </div>
           </form>
       </div>
